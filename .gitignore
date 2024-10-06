@@ -1,0 +1,87 @@
+# Fichiers Python
+*.py[cod]
+__pycache__/
+*.so
+
+# Poids :
+resnet51q.safetensors
+*.pth
+*.pt
+
+# Environnements virtuels
+env/
+venv/
+ENV/
+.venv/
+.ENV/
+
+# Cache de packages
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Caches et fichiers temporaires
+*.log
+*.tmp
+*.temp
+*.out
+*.bak
+*.swp
+*.swo
+*~
+
+# Fichiers spécifiques à macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Fichiers Thumbs.db et autres métadonnées Windows
+Thumbs.db
+Desktop.ini
+
+# Configurations de l'éditeur
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Fichiers Jupyter Notebook
+.ipynb_checkpoints/
+
+# Caches de tests unitaires
+.tox/
+.nox/
+.coverage
+*.cover
+.hypothesis/
+
+# Fichiers de test coverage
+htmlcov/
+coverage.xml
+
+# Sortie des compilateurs C/C++
+*.o
+*.a
+*.dylib
+*.lib
+*.dll
+*.exe
+*.out
+
+# Fichiers de déploiement Docker
+*.env
+Dockerfile
+docker-compose.yml
+
+# Fichiers liés à PyCharm
+.idea/
+
+# Fichiers spécifiques à macOS
+.DS_Store
+._*
+
+# Caches et logs
+*.log
+*.cache
+
+# Dossier spécifique à Lightning
+lightning_logs/
