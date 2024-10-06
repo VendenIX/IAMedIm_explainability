@@ -85,3 +85,4 @@ docker-compose.yml
 
 # Dossier spécifique à Lightning
 lightning_logs/
+runs/

@@ -15,32 +15,30 @@ class MRIDataset(Dataset):
         self.dataframe = dataframe
         self.dataset_path = dataset_path
     
-    # return le nb d'images dans le dataset
     def __len__(self):
         return len(self.dataframe)
     
-    # lit une image et son label à partir d’un fichier .h5. Elle normalise l’image et retourne un tenseur compatible avec PyTorch
     def __getitem__(self, idx):
         row = self.dataframe.iloc[idx]
         h5_path = os.path.join(self.dataset_path, row['slice_path'])
         label = row['target']
         
         with h5py.File(h5_path, 'r') as f:
-            # Accéder à l'image à partir de la clé 'image'
             if 'image' in f:
                 image = np.array(f['image'][:])
+                if len(image.shape) == 3:
+                    image = image[:, :, 0]
             else:
                 raise KeyError(f"Key 'image' not found in {h5_path}")
-            
-            # Optionnel : si tu veux aussi utiliser le masque
-            if 'mask' in f:
-                mask = np.array(f['mask'][:])
-                # Utiliser ou afficher le masque si besoin
-                #print(f"Mask shape: {mask.shape}")
         
-        # Normalisation des images (optionnelle)
-        image = image / np.max(image)
-        image = torch.tensor(image, dtype=torch.float32).unsqueeze(0)  # Pour garder un canal (noir et blanc)
+        # verif pour éviter une division par zéro
+        max_val = np.max(image)
+        if max_val > 0:
+            image = image / max_val
+        else:
+            pass
+        
+        image = torch.tensor(image, dtype=torch.float32).unsqueeze(0)
         
         return image, torch.tensor(label, dtype=torch.float32)
 
